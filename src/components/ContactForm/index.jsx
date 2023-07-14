@@ -23,6 +23,7 @@ class ContactForm extends Component {
 
     addContact(this.state);
     this.setState({ ...this.state });
+    this.setState({ name: '', number: '' });
   };
 
   render() {

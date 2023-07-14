@@ -17,7 +17,7 @@ export class App extends Component {
 
   addContact = ({ name, number }) => {
     const newContact = {
-      id: nanoid(),
+      id: nanoid(8),
       name,
       number,
     };
@@ -50,6 +50,17 @@ export class App extends Component {
       contact.name.toLowerCase().includes(inputContact)
     );
   };
+
+  componentDidMount() {
+    const storedContact = localStorage.getItem('contacts');
+    this.setState({
+      contacts: JSON.parse(storedContact),
+    });
+  }
+
+  componentDidUpdate() {
+    localStorage.setItem('contacts', JSON.stringify(this.state.contacts));
+  }
 
   render() {
     const { filter } = this.state;
